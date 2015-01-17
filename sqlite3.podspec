@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
   archive_name = "sqlite-amalgamation-#{s.version.to_s.gsub('.', '0')}"
-  s.source   = { :http => "https://www.sqlite.org/2015/#{archive_name}.zip" }
+  s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.requires_arc = false
 
   s.default_subspecs = 'common'
@@ -21,6 +21,11 @@ Pod::Spec.new do |s|
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
+  end
+
+  s.subspec 'api_armor' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_API_ARMOR=1' }
   end
 
   s.subspec 'fts' do |ss|
