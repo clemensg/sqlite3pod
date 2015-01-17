@@ -28,30 +28,24 @@ Pod::Spec.new do |s|
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_API_ARMOR=1' }
   end
 
-  s.subspec 'fts' do |ss|
-    ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
-  end
-
-  s.subspec 'unicode61' do |ss|
-    ss.dependency 'sqlite3/common'
-    ss.dependency 'sqlite3/fts'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4_UNICODE61=1' }
-  end
-
   s.subspec 'coldata' do |ss|
     ss.dependency 'sqlite3/common'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_COLUMN_METADATA=1' }
   end
 
-  s.subspec 'unlock_notify' do |ss|
+  s.subspec 'fts' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_UNLOCK_NOTIFY=1' }
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
   end
 
   s.subspec 'rtree' do |ss|
     ss.dependency 'sqlite3/common'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RTREE=1' }
+  end
+
+  s.subspec 'soundex' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_SOUNDEX=1' }
   end
 
   s.subspec 'stat3' do |ss|
@@ -64,8 +58,14 @@ Pod::Spec.new do |s|
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT4=1' }
   end
 
-  s.subspec 'soundex' do |ss|
+  s.subspec 'unicode61' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_SOUNDEX=1' }
+    ss.dependency 'sqlite3/fts'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4_UNICODE61=1' }
+  end
+
+  s.subspec 'unlock_notify' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_UNLOCK_NOTIFY=1' }
   end
 end
