@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
   end
 
   s.subspec 'api_armor' do |ss|
