@@ -5,7 +5,8 @@ The repository for the sqlite3 podspec in [CocoaPods](http://cocoapods.org).
 
 Please refer to the [SQLite](https://www.sqlite.org) project if you encounter any problems related to SQLite itself: https://sqlite.org/support.html
 
-**IMPORTANT**: If you are building SQLite 3.8.9 for iOS your build might fail due to an upstream bug in relation to `gethostuuid` (see [this issue](https://github.com/clemensg/sqlite3pod/issues/1)). The bug appeared in SQLite version 3.8.9, so you can either roll back to version 3.8.8.3 by specifying `pod 'sqlite3', '3.8.8.3'` in your Podfile or use the workaround `pod 'sqlite3', git: 'git@github.com:clemensg/sqlite3pod.git'` until the next version bump. Then the workaround will become available via `pod 'sqlite3'`.
+**IMPORTANT**: I had to push this podspec with the version number incremented from 3.8.9.0 to 3.8.9.0.1 due to a SQLite upstream bug on iOS in relation to `gethostuuid` (see [this issue](https://github.com/clemensg/sqlite3pod/issues/1)). The bug appeared in SQLite version 3.8.9, so you can either roll back to version 3.8.8.3 by specifying `pod 'sqlite3', '3.8.8.3'` in your Podfile or use this fixed version via the usual `pod 'sqlite3'`.
+Before incrementing the version number, I tried adding a suffix but CocoaPods did not regard those versions as newer. Sorry for the inconvenience.
 
 Pull requests to improve this podspec are welcome.
 
