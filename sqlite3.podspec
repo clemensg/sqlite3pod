@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.8.11.1'
+  s.version  = '3.9.0.0'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
       All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
       All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/clemensg/sqlite3pod'
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
-  archive_name = "sqlite-amalgamation-3081101"
+  archive_name = "sqlite-amalgamation-#{s.version.to_s.tr('.', '0')}"
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.requires_arc = false
 
@@ -41,6 +41,18 @@ Pod::Spec.new do |s|
   s.subspec 'fts' do |ss|
     ss.dependency 'sqlite3/common'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
+  end
+
+  # FTS5 full-text-search (Experimental feature!)
+  s.subspec 'fts5' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS5=1' }
+  end
+
+  # JSON1 extension for managing JSON content
+  s.subspec 'json1' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_JSON1=1' }
   end
 
   # Resumable Bulk Update (Experimental feature!)
