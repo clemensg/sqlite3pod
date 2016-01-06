@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.9.2.0'
+  s.version  = '3.10.0'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
       All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
       All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -12,7 +12,8 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/clemensg/sqlite3pod'
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
-  archive_name = "sqlite-amalgamation-#{s.version.to_s.tr('.', '0')}"
+  v = s.version.to_s.split('.')
+  archive_name = "sqlite-amalgamation-"+v[0]+v[1]+v[2].rjust(2, '0')+"00"
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.requires_arc = false
 
@@ -65,6 +66,12 @@ Pod::Spec.new do |s|
   s.subspec 'rtree' do |ss|
     ss.dependency 'sqlite3/common'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RTREE=1' }
+  end
+
+  # Interface for historical database snapshots (Experimental!)
+  s.subspec 'snapshot' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_SNAPSHOT=1' }
   end
 
   # Soundex phonetic string encoding function
