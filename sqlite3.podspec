@@ -13,7 +13,7 @@ LICENSE
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
   v = s.version.to_s.split('.')
-  archive_name = "sqlite-amalgamation-"+v[0]+v[1]+v[2].rjust(2, '0')+"00"
+  archive_name = "sqlite-amalgamation-"+v[0]+v[1].rjust(2, '0')+v[2].rjust(2, '0')+"00"
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.requires_arc = false
 
