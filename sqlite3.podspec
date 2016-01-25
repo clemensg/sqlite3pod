@@ -21,75 +21,78 @@ LICENSE
 
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
-    ss.osx.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
-    # Disable Apple-contributed network fs optimizations on iOS (Broken since 3.8.9 and unnecessary)
-    ss.ios.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
+    ss.osx.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
+    # Disable OS X / AFP locking code on mobile platforms (iOS, tvOS, watchOS)
+    sqlite_xcconfig_ios = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
+    ss.ios.pod_target_xcconfig = sqlite_xcconfig_ios
+    ss.tvos.pod_target_xcconfig = sqlite_xcconfig_ios
+    ss.watchos.pod_target_xcconfig = sqlite_xcconfig_ios
   end
 
   # Detect misuse of SQLite API
   s.subspec 'api_armor' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_API_ARMOR=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_API_ARMOR=1' }
   end
 
   # API for column meta-data access
   s.subspec 'coldata' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_COLUMN_METADATA=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_COLUMN_METADATA=1' }
   end
 
   # FTS4 full-text-search
   s.subspec 'fts' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
   end
 
   # FTS5 full-text-search (Experimental feature!)
   s.subspec 'fts5' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS5=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS5=1' }
   end
 
   # JSON1 extension for managing JSON content
   s.subspec 'json1' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_JSON1=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_JSON1=1' }
   end
 
   # Resumable Bulk Update (Experimental feature!)
   s.subspec 'rbu' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RBU=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RBU=1' }
   end
 
   # R*Tree index for range queries
   s.subspec 'rtree' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RTREE=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RTREE=1' }
   end
 
   # Interface for historical database snapshots (Experimental!)
   s.subspec 'snapshot' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_SNAPSHOT=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_SNAPSHOT=1' }
   end
 
   # Soundex phonetic string encoding function
   s.subspec 'soundex' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_SOUNDEX=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_SOUNDEX=1' }
   end
 
   # Enhanced ANALYZE and query planner: Collects histogram data for the left-most column of each index
   s.subspec 'stat3' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT3=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT3=1' }
   end
 
   # Further enhanced ANALYZE and query planner: Collects histogram data for all columns of each index
   s.subspec 'stat4' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT4=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT4=1' }
   end
 
   # Build unicode61 FTS tokenizer (Deprecated! The tokenizer is built by default)
@@ -101,6 +104,6 @@ LICENSE
   # API to register unlock-notification callbacks
   s.subspec 'unlock_notify' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_UNLOCK_NOTIFY=1' }
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_UNLOCK_NOTIFY=1' }
   end
 end
