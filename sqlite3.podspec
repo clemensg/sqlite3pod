@@ -71,6 +71,12 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RTREE=1' }
   end
 
+  # Session extension: Record and package changes to rowid tables into files that can be applied to other DBs
+  s.subspec 'session' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_PREUPDATE_HOOK=1 -DSQLITE_ENABLE_SESSION=1' }
+  end
+
   # Interface for historical database snapshots (Experimental!)
   s.subspec 'snapshot' do |ss|
     ss.dependency 'sqlite3/common'
