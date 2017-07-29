@@ -47,7 +47,7 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1' }
   end
 
-  # FTS5 full-text-search (Experimental feature!)
+  # FTS5 full-text-search
   s.subspec 'fts5' do |ss|
     ss.dependency 'sqlite3/common'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS5=1' }
@@ -59,7 +59,7 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_JSON1=1' }
   end
 
-  # Resumable Bulk Update (Experimental feature!)
+  # Resumable Bulk Update
   s.subspec 'rbu' do |ss|
     ss.dependency 'sqlite3/common'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_RBU=1' }
