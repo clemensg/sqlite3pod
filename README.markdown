@@ -20,6 +20,7 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 - [Column Metadata Access](https://sqlite.org/compile.html#enable_column_metadata): `pod 'sqlite3/coldata'`
 - [Full-Text-Search (FTS3/4)](https://www.sqlite.org/fts3.html): `pod 'sqlite3/fts'`
 - [Full-Text-Search (FTS5)](https://www.sqlite.org/fts5.html): `pod 'sqlite3/fts5'`
+- [Geopoly](https://sqlite.org/geopoly.html): `pod 'sqlite3/geopoly'`
 - [JSON Support](https://www.sqlite.org/json1.html): `pod 'sqlite3/json1'`
 - [Resumable Bulk Update](https://www.sqlite.org/rbu.html): `pod 'sqlite3/rbu'`
 - [R*-Tree index for range queries](https://www.sqlite.org/rtree.html): `pod 'sqlite3/rtree'`

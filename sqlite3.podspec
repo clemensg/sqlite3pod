@@ -53,6 +53,13 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_FTS5=1' }
   end
 
+  # Geopoly extension
+  s.subspec 'geopoly' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.dependency 'sqlite3/rtree'
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_GEOPOLY=1' }
+  end
+
   # JSON1 extension for managing JSON content
   s.subspec 'json1' do |ss|
     ss.dependency 'sqlite3/common'
