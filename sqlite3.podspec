@@ -84,7 +84,7 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_PREUPDATE_HOOK=1 -DSQLITE_ENABLE_SESSION=1' }
   end
 
-  # Interface for historical database snapshots (Experimental!)
+  # Interface for historical database snapshots
   s.subspec 'snapshot' do |ss|
     ss.dependency 'sqlite3/common'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_SNAPSHOT=1' }
