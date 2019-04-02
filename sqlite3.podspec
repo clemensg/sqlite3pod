@@ -21,6 +21,7 @@ LICENSE
 
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
+    ss.public_header_files = "#{archive_name}/sqlite3.h"
     ss.osx.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
     # Disable OS X / AFP locking code on mobile platforms (iOS, tvOS, watchOS)
     sqlite_xcconfig_ios = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
