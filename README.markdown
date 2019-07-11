@@ -22,6 +22,10 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 - [Full-Text-Search (FTS5)](https://www.sqlite.org/fts5.html): `pod 'sqlite3/fts5'`
 - [Geopoly](https://sqlite.org/geopoly.html): `pod 'sqlite3/geopoly'`
 - [JSON Support](https://www.sqlite.org/json1.html): `pod 'sqlite3/json1'`
+- [Performance](https://sqlite.org/compile.html#rcmd): `pod 'sqlite3/perf'`
+  (This subspec sets compile-time options recommended by the SQLite docs for increased performance and reduced memory usage. As it disables thread-safety logic, shared-cache mode, etc., make sure your application is able to use it and does not access SQLite from more than one thread at a time)
+- [Performance](https://sqlite.org/compile.html#rcmd) (**Threadsafe**): `pod 'sqlite3/perf-threadsafe'`
+  (This subspec sets the same recommended compile-time options as above except keeping thread-safety logic and shared-cache mode enabled)
 - [Resumable Bulk Update](https://www.sqlite.org/rbu.html): `pod 'sqlite3/rbu'`
 - [R*-Tree index for range queries](https://www.sqlite.org/rtree.html): `pod 'sqlite3/rtree'`
 - [Historical Snapshots](https://www.sqlite.org/c3ref/snapshot.html): `pod 'sqlite3/snapshot'`
