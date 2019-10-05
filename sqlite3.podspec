@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.29.0'
+  s.version  = '3.30.0'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
 All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
 All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -109,13 +109,14 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_SOUNDEX=1' }
   end
 
-  # Enhanced ANALYZE and query planner: Collects histogram data for the left-most column of each index
+  # Enhanced ANALYZE and query planner (Deprecated!)
   s.subspec 'stat3' do |ss|
-    ss.dependency 'sqlite3/common'
-    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT3=1' }
+    # The legacy option SQLITE_ENABLE_STAT3 is a no-op since version 3.30.0
+    # We therefore depend on the replacement SQLITE_ENABLE_STAT4
+    ss.dependency 'sqlite3/stat4'
   end
 
-  # Further enhanced ANALYZE and query planner: Collects histogram data for all columns of each index
+  # Enhanced ANALYZE and query planner: Collects histogram data for all columns of each index
   s.subspec 'stat4' do |ss|
     ss.dependency 'sqlite3/common'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_STAT4=1' }
