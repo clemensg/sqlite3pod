@@ -21,6 +21,7 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 - [Full-Text-Search (FTS3/4)](https://www.sqlite.org/fts3.html): `pod 'sqlite3/fts'`
 - [Full-Text-Search (FTS5)](https://www.sqlite.org/fts5.html): `pod 'sqlite3/fts5'`
 - [Geopoly](https://sqlite.org/geopoly.html): `pod 'sqlite3/geopoly'`
+- [ICU](https://sqlite.org/compile.html#enable_icu) (**Experimental**): `pod 'sqlite3/icu'` (Adds a dependency to the [icu4c-iosx](https://github.com/apotocki/icu4c-iosx) pod)
 - [JSON Support](https://www.sqlite.org/json1.html): `pod 'sqlite3/json1'`
 - [Performance](https://sqlite.org/compile.html#rcmd): `pod 'sqlite3/perf'`
   (This subspec sets compile-time options recommended by the SQLite docs for increased performance and reduced memory usage. As it disables thread-safety logic, shared-cache mode, etc., make sure your application is able to use it and does not access SQLite from more than one thread at a time)

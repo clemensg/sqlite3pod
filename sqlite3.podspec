@@ -17,6 +17,9 @@ LICENSE
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.requires_arc = false
 
+  s.ios.deployment_target = '12.0'
+  s.osx.deployment_target = '11.0'
+
   s.default_subspecs = 'common'
 
   s.subspec 'common' do |ss|
@@ -59,6 +62,14 @@ LICENSE
     ss.dependency 'sqlite3/common'
     ss.dependency 'sqlite3/rtree'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_GEOPOLY=1' }
+  end
+
+  # International Components for Unicode (ICU) extension
+  s.subspec 'icu' do |ss|
+    ss.dependency 'icu4c-iosx'
+    ss.dependency 'sqlite3/common'
+    ss.library = 'c++'
+    ss.pod_target_xcconfig = { 'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17', 'CLANG_CXX_LIBRARY' => 'libc++', 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_ICU=1' }
   end
 
   # JSON1 extension for managing JSON content
