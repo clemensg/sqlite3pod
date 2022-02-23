@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.37.2'
+  s.version  = '3.38.0'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
 All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
 All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -61,10 +61,9 @@ LICENSE
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_GEOPOLY=1' }
   end
 
-  # JSON1 extension for managing JSON content
+  # JSON1 extension for managing JSON content (Built-in since 3.38.0)
   s.subspec 'json1' do |ss|
     ss.dependency 'sqlite3/common'
-    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_JSON1=1' }
   end
 
   # Recommended defaults for increased performance and reduced memory usage
