@@ -31,6 +31,7 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 - [Historical Snapshots](https://www.sqlite.org/c3ref/snapshot.html): `pod 'sqlite3/snapshot'`
 - [Session Extension](https://www.sqlite.org/sessionintro.html): `pod 'sqlite3/session'`
 - [Soundex](https://www.sqlite.org/lang_corefunc.html#soundex): `pod 'sqlite3/soundex'`
+- [Spellfix1](https://www.sqlite.org/spellfix1.html): `pod 'sqlite3/spellfix1'`
 - [STAT4 Enhanced ANALYZE and query planner](https://sqlite.org/compile.html#enable_stat4): `pod 'sqlite3/stat4'`
 - [Unlock-Notify API](https://www.sqlite.org/unlock_notify.html): `pod 'sqlite3/unlock_notify'`
 
