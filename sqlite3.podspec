@@ -13,15 +13,20 @@ LICENSE
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
   v = s.version.to_s.split('.')
-  archive_name = "sqlite-amalgamation-"+v[0]+v[1].rjust(2, '0')+v[2].rjust(2, '0')+"00"
+  archive_name = "sqlite-src-"+v[0]+v[1].rjust(2, '0')+v[2].rjust(2, '0')+"00"
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
+  s.prepare_command = <<-CMD
+cd #{archive_name}
+./configure
+make sqlite3.c sqlite3.h sqlite3ext.h
+CMD
   s.requires_arc = false
 
   s.default_subspecs = 'common'
 
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
-    ss.public_header_files = "#{archive_name}/sqlite3.h"
+    ss.public_header_files = "#{archive_name}/sqlite3.h,#{archive_name}/sqlite3ext.h"
     ss.osx.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
     # Disable OS X / AFP locking code on mobile platforms (iOS, tvOS, watchOS)
     sqlite_xcconfig_ios = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
@@ -131,5 +136,11 @@ LICENSE
   s.subspec 'unlock_notify' do |ss|
     ss.dependency 'sqlite3/common'
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_UNLOCK_NOTIFY=1' }
+  end
+
+  # The spellfix1 module not part of the default amalgation
+  s.subspec 'spellfix1' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.source_files = "#{archive_name}/ext/misc/spellfix.c"
   end
 end
