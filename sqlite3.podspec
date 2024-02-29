@@ -41,6 +41,12 @@ CMD
     ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_API_ARMOR=1' }
   end
 
+  # Enable bytecode() and tables_used() table-valued functions
+  s.subspec 'bytecodevtab' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_BYTECODE_VTAB=1' }
+  end
+
   # API for column meta-data access
   s.subspec 'coldata' do |ss|
     ss.dependency 'sqlite3/common'
