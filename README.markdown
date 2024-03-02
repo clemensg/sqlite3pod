@@ -17,6 +17,7 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 ## Subspecs
 
 - [API Armor, detects API misuse during development](https://sqlite.org/compile.html#enable_api_armor): `pod 'sqlite3/api_armor'`
+- [Bytecode() And Tables_Used() Table-Valued Functions](https://www.sqlite.org/bytecodevtab.html): `pod 'sqlite3/bytecodevtab'`
 - [Column Metadata Access](https://sqlite.org/compile.html#enable_column_metadata): `pod 'sqlite3/coldata'`
 - [Full-Text-Search (FTS3/4)](https://www.sqlite.org/fts3.html): `pod 'sqlite3/fts'`
 - [Full-Text-Search (FTS5)](https://www.sqlite.org/fts5.html): `pod 'sqlite3/fts5'`
