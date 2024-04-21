@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.45.3'
+  s.version  = '3.45.3+1'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
 All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
 All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -12,8 +12,8 @@ LICENSE
   s.homepage = 'https://github.com/clemensg/sqlite3pod'
   s.authors  = { 'Clemens Gruber' => 'clemensgru@gmail.com' }
 
-  v = s.version.to_s.split('.')
-  archive_name = "sqlite-src-"+v[0]+v[1].rjust(2, '0')+v[2].rjust(2, '0')+"00"
+  v = s.version.to_s.match(/(\d+).(\d+).(\d+)(?:\+\w+)?/)
+  archive_name = "sqlite-src-"+v[1]+v[2].rjust(2, '0')+v[3].rjust(2, '0')+"00"
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.prepare_command = <<-CMD
 cd #{archive_name}
