@@ -36,6 +36,7 @@ To use SQLite in your project, add `pod 'sqlite3'` to your Podfile. However, as 
 - [STAT4 Enhanced ANALYZE and query planner](https://sqlite.org/compile.html#enable_stat4): `pod 'sqlite3/stat4'`
 - [Unlock-Notify API](https://www.sqlite.org/unlock_notify.html): `pod 'sqlite3/unlock_notify'`
 - [DBSTAT](https://www.sqlite.org/dbstat.html): `pod 'sqlite3/dbstatvtab'`
+- [Math](https://www.sqlite.org/lang_mathfunc.html): `pod 'sqlite3/math'`
 
 ## License
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'sqlite3'
-  s.version  = '3.46.1'
+  s.version  = '3.46.2'
   s.license  = { :type => 'Public Domain', :text => <<-LICENSE
 All of the code and documentation in SQLite has been dedicated to the public domain by the authors.
 All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci.
@@ -17,6 +17,7 @@ LICENSE
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.prepare_command = <<-CMD
 cd #{archive_name}
+pwd
 ./configure
 make sqlite3.c sqlite3.h sqlite3ext.h
 CMD
@@ -161,5 +162,11 @@ CMD
   s.subspec 'spellfix1' do |ss|
     ss.dependency 'sqlite3/common'
     ss.source_files = "#{archive_name}/ext/misc/spellfix.c"
+  end
+  
+  # Math extension
+  s.subspec 'math' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_ENABLE_MATH_FUNCTIONS=1' }
   end
 end
