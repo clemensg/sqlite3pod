@@ -17,7 +17,6 @@ LICENSE
   s.source   = { :http => "https://www.sqlite.org/#{Time.now.year}/#{archive_name}.zip" }
   s.prepare_command = <<-CMD
 cd #{archive_name}
-pwd
 ./configure
 make sqlite3.c sqlite3.h sqlite3ext.h
 CMD
