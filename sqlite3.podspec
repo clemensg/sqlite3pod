@@ -34,13 +34,18 @@ CMD
 
   s.subspec 'common' do |ss|
     ss.source_files = "#{archive_name}/sqlite*.{h,c}"
-    ss.public_header_files = "#{archive_name}/sqlite3.h,#{archive_name}/sqlite3ext.h"
+    ss.public_header_files = "#{archive_name}/sqlite3.h"
     ss.osx.pod_target_xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1' }
     # Disable OS X / AFP locking code on mobile platforms (iOS, tvOS, watchOS)
     sqlite_xcconfig_ios = { 'OTHER_CFLAGS' => '$(inherited) -DHAVE_USLEEP=1 -DSQLITE_ENABLE_LOCKING_STYLE=0' }
     ss.ios.pod_target_xcconfig = sqlite_xcconfig_ios
     ss.tvos.pod_target_xcconfig = sqlite_xcconfig_ios
     ss.watchos.pod_target_xcconfig = sqlite_xcconfig_ios
+  end
+
+  s.subspec 'extension' do |ss|
+    ss.dependency 'sqlite3/common'
+    ss.public_header_files = "#{archive_name}/sqlite3ext.h"
   end
 
   # Detect misuse of SQLite API
